@@ -22,7 +22,7 @@ namespace Task2
             Preis = derPreis;
         }
 
-        public string GetMarke() { return Marke; }
+        public string GetMarke() => Marke;
         public double GetPreis() { return Preis; }
     }
     class Program
