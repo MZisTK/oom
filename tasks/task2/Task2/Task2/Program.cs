@@ -9,13 +9,15 @@ namespace Task2
 
     class Auto
     {
-        string marke;
-        double preis;
+        string Marke;
+        double Preis;
     }
     class Program
     {
         static void Main(string[] args)
         {
+            Auto Mazda = new Auto();
+            Auto Audi = new Auto();
 
 
         }
