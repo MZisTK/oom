@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
+
+    class Auto
+    {
+        string marke;
+        double preis;
+    }
     class Program
     {
         static void Main(string[] args)
         {
+
+
         }
     }
 }
