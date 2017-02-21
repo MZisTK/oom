@@ -24,15 +24,35 @@ namespace Task2
 
         public string GetMarke() => Marke;
         public double GetPreis() { return Preis; }
+
+        
+
+        public void SetPreis(decimal neuerPreis)
+        {
+            if (neuerPreis < 0)
+                throw new Exception("negativer Preis");
+            Preis = neuerPreis;
+        }
     }
+
+
     class Program
     {
         static void Main(string[] args)
         {
-            Auto eins = new Auto("Mazda", 20000);
-            Auto zwei = new Auto("audi", 30000.5);
-            Console.WriteLine($"Auto: { eins.GetMarke()} {eins.GetPreis()}");
-            Console.WriteLine($"Auto: {zwei.GetMarke()} {zwei.GetPreis()}");
+            try
+            {
+                Auto eins = new Auto("Mazda", 20000);
+                Auto zwei = new Auto("audi", 30000.5);
+
+                eins.SetPreis(500);
+                Console.WriteLine($"Auto: { eins.GetMarke()} {eins.GetPreis()}");
+                Console.WriteLine($"Auto: {zwei.GetMarke()} {zwei.GetPreis()}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Es ist was passiert ({e.Message})");
+            }
         }
     }
 }
