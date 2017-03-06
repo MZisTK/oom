@@ -43,8 +43,7 @@ namespace Task2
             try
             {
                 Auto eins = new Auto("Mazda", 20000);
-                Auto zwei = new Auto("audi", 30000.5);
-
+                Auto zwei = new Auto("Audi", 30000.5);
                 eins.SetPreis(1000);
                 Console.WriteLine($"Auto: { eins.GetMarke()} {eins.GetPreis()}");
                 Console.WriteLine($"Auto: {zwei.GetMarke()} {zwei.GetPreis()}");
