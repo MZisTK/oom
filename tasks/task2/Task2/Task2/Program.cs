@@ -26,8 +26,8 @@ namespace Task2
         public double GetPreis() { return Preis; }
 
         
-
-        public void SetPreis(decimal neuerPreis)
+        
+        public void SetPreis(double neuerPreis)
         {
             if (neuerPreis < 0)
                 throw new Exception("negativer Preis");
@@ -45,7 +45,7 @@ namespace Task2
                 Auto eins = new Auto("Mazda", 20000);
                 Auto zwei = new Auto("audi", 30000.5);
 
-                eins.SetPreis(500);
+                eins.SetPreis(1000);
                 Console.WriteLine($"Auto: { eins.GetMarke()} {eins.GetPreis()}");
                 Console.WriteLine($"Auto: {zwei.GetMarke()} {zwei.GetPreis()}");
             }
