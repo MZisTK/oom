@@ -15,7 +15,9 @@ namespace task3
         {
             return f(x);
         }
-         
+
+       
+
         static void Main(string[] args)
         {
             /*
@@ -26,7 +28,7 @@ namespace task3
 
             var xs = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             //xs ist ein Kunden array -> verdoppeln
-
+             
 
         }
     }
