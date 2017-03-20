@@ -13,7 +13,7 @@ namespace task3
         [Test]
         public void SimpleTest()
         {
-            Assert.IsTrue(1 == 2);
+            Assert.IsTrue(1 == 1);
         }
     }
 }
