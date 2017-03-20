@@ -1,4 +1,7 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.IO;
 
 
 namespace task3
@@ -15,7 +18,6 @@ namespace task3
         {
             Console.WriteLine($"Flugzeug: { GetMarke()} - {GetModell()}, Besatzung: { GetBesatzung()} Passagiere: { GetPassagiere()}");
         }
-
         private string Marke;
         private string Modell;
         private int Besatzung;
@@ -69,7 +71,7 @@ namespace task3
         }
     }
 
-
+    
     class Program
     {
         static void Main(string[] args)
@@ -82,10 +84,25 @@ namespace task3
                 Flugzeug zweites = new Flugzeug("Boeing", "747-8", 2, 605);
                 eins.SetPreis(1000);
                 ITransportmittel[] TranspArray = { eins, new Auto("Audi", 30000.5), new Flugzeug("Airbus", "A380", 2, 853), zweites };
-                foreach (ITransportmittel Transportmitel in TranspArray)
+
+                string maschine = JsonConvert.SerializeObject(TranspArray, Formatting.Indented);
+                System.IO.File.WriteAllText(@"C:\temp\task4.json", maschine);
+
+                using (StreamReader file = File.OpenText(@"C:\temp\task4.json"))
                 {
-                    Transportmitel.Print();
+                    using (JsonTextReader read = new JsonTextReader(file))
+                    {
+                        JArray reader = (JArray)JToken.ReadFrom(read);
+                        foreach( var variable in reader )
+                        {
+                            Console.WriteLine(variable.ToString());
+                        }
+                    }
                 }
+                    foreach (ITransportmittel Transportmitel in TranspArray)
+                    {
+                        Transportmitel.Print();
+                    }
             }
             catch (Exception e)
             {
