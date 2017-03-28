@@ -47,22 +47,22 @@ namespace task3
     {
         public void Print()
         {
-            Console.WriteLine($"Auto: { GetMarke()}, Preis: {GetPreis()}");
+            Console.WriteLine($"Auto: { a_marke}, Preis: {a_preis}");
         }
         
-        private string Marke;
+        private string mMarke;
         private double Preis;
         public Auto(string dieMarke, double derPreis) 
         {
             if (dieMarke == null || dieMarke.Length < 1)
                 throw new Exception("Keine Marke");
-            Marke = dieMarke;
+            mMarke = dieMarke;
             if (derPreis < 0)
                 throw new Exception("negativer Preis");
             Preis = derPreis;
         }
-        public string GetMarke() => Marke;
-        public double GetPreis() { return Preis; }
+        public string a_marke => mMarke;
+        public double a_preis => Preis;
         public void SetPreis(double neuerPreis)
         {
             if (neuerPreis < 0)
