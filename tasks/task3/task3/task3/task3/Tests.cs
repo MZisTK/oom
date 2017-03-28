@@ -8,12 +8,13 @@ using NUnit.Framework;
 namespace task3
 {
     [TestFixture]
-    class Tests
+    class Testprogram
     {
         [Test]
-        public void SimpleTest()
-        {
-            Assert.IsTrue(1 == 1);
+        public void test(){
+            int a = 1;
+            int b = 1;
+            Assert.IsTrue(a == b);
         }
     }
 }
