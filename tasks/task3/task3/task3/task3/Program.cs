@@ -46,7 +46,7 @@ namespace task3
         public int b_Besatzung => Besatzung;
         public int b_Passagiere => Passagiere;
 
-        private bool IstEsBeladen;
+  
 
         private readonly Subject<Flugzeug> ist_beladen = new Subject<Flugzeug>();
         public IObservable<Flugzeug> beladen { get { return ist_beladen.AsObservable(); } }
@@ -90,12 +90,9 @@ namespace task3
             a = DateTime.Now.AddDays(num); 
             return a;
         }
-               
-
         static void Main(string[] args)
         {
             DateTime Zeitpunkt = Task.Run(CountToAsync(10));
-           
             try
             {
                 Auto eins = new Auto("Mazda", 20000);
