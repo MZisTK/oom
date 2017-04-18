@@ -2,6 +2,9 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
+using System.Threading.Tasks;
 
 
 namespace task3
@@ -42,6 +45,16 @@ namespace task3
         public string m_Modell => Modell;
         public int b_Besatzung => Besatzung;
         public int b_Passagiere => Passagiere;
+
+        private bool IstEsBeladen;
+
+        private readonly Subject<Flugzeug> ist_beladen = new Subject<Flugzeug>();
+        public IObservable<Flugzeug> beladen { get { return ist_beladen.AsObservable(); } }
+        public void BeladenMarkieren(bool loaded)
+        {
+            IstEsBeladen = loaded;
+            ist_beladen.OnNext(this);
+        }
     }
     class Auto : ITransportmittel
     {
@@ -74,16 +87,29 @@ namespace task3
     
     class Program
     {
+        private DateTime CountToAsync(int num)
+        {
+            DateTime a;
+            a = DateTime.Now.AddDays(num); 
+            return a;
+        }
+               
+
         static void Main(string[] args)
         {
-
+            DateTime Zeitpunkt = Task.Run(CountToAsync(10));
+           
             try
-
             {
                 Auto eins = new Auto("Mazda", 20000);
                 Flugzeug zweites = new Flugzeug("Boeing", "747-8", 2, 605);
                 eins.SetPreis(1000);
-                ITransportmittel[] TranspArray = { eins, new Auto("Audi", 30000.5), new Flugzeug("Airbus", "A380", 2, 853), zweites };
+
+                var flightmachine = new Flugzeug("Nikki", "ersteMaschine", 6, 300);
+                flightmachine.beladen.Subscribe(_ => Console.WriteLine("Vollbeladen"));
+                flightmachine.BeladenMarkieren(true);
+
+                ITransportmittel[] TranspArray = { flightmachine,eins, new Auto("Audi", 30000.5), new Flugzeug("Airbus", "A380", 2, 853), zweites };
 
                 string maschine = JsonConvert.SerializeObject(TranspArray, Formatting.Indented);
                 System.IO.File.WriteAllText(@"C:\temp\task4.json", maschine);
