@@ -50,11 +50,7 @@ namespace task3
 
         private readonly Subject<Flugzeug> ist_beladen = new Subject<Flugzeug>();
         public IObservable<Flugzeug> beladen { get { return ist_beladen.AsObservable(); } }
-        public void BeladenMarkieren(bool loaded)
-        {
-            IstEsBeladen = loaded;
-            ist_beladen.OnNext(this);
-        }
+      
     }
     class Auto : ITransportmittel
     {
@@ -65,6 +61,7 @@ namespace task3
         
         private string mMarke;
         private double Preis;
+
         public Auto(string dieMarke, double derPreis) 
         {
             if (dieMarke == null || dieMarke.Length < 1)
@@ -107,7 +104,6 @@ namespace task3
 
                 var flightmachine = new Flugzeug("Nikki", "ersteMaschine", 6, 300);
                 flightmachine.beladen.Subscribe(_ => Console.WriteLine("Vollbeladen"));
-                flightmachine.BeladenMarkieren(true);
 
                 ITransportmittel[] TranspArray = { flightmachine,eins, new Auto("Audi", 30000.5), new Flugzeug("Airbus", "A380", 2, 853), zweites };
 
